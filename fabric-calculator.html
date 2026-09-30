@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Fabric Requirement Calculator | Fashionpreneur Lab</title>
+
+  <meta name="description" content="Calculate estimated fabric requirements for apparel production.">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f5f5f5;
+      color: #222;
+    }
+
+    header {
+      background: #222;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0 0 10px;
+      font-size: 28px;
+    }
+
+    header p {
+      margin: 0;
+      color: #ddd;
+    }
+
+    .container {
+      max-width: 650px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+
+    .calculator {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 13px;
+      background: #222;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #444;
+    }
+
+    .result {
+      margin-top: 25px;
+      padding: 20px;
+      background: #f0f0f0;
+      border-radius: 8px;
+      display: none;
+    }
+
+    .result h2 {
+      margin-top: 0;
+    }
+
+    .result p {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+
+    .note {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #222;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Fabric Requirement Calculator</h1>
+    <p>Estimate the fabric needed for your apparel production.</p>
+  </header>
+
+  <div class="container">
+
+    <div class="calculator">
+
+      <label for="fabricPerGarment">
+        Fabric Required Per Garment (meters)
+      </label>
+
+      <input
+        type="number"
+        id="fabricPerGarment"
+        placeholder="Example: 2.2"
+        step="0.01"
+        min="0"
+      >
+
+      <label for="quantity">
+        Production Quantity
+      </label>
+
+      <input
+        type="number"
+        id="quantity"
+        placeholder="Example: 100"
+        min="1"
+      >
+
+      <label for="wastage">
+        Estimated Fabric Wastage (%)
+      </label>
+
+      <input
+        type="number"
+        id="wastage"
+        placeholder="Example: 5"
+        value="5"
+        step="0.1"
+        min="0"
+      >
+
+      <button onclick="calculateFabric()">
+        Calculate Fabric Requirement
+      </button>
+
+      <div class="result" id="result">
+
+        <h2>Estimated Requirement</h2>
+
+        <p>
+          Fabric Before Wastage:
+          <strong><span id="beforeWastage">0</span> meters</strong>
+        </p>
+
+        <p>
+          Additional Wastage:
+          <strong><span id="wastageAmount">0</span> meters</strong>
+        </p>
+
+        <p>
+          <strong>Total Fabric Required:
+          <span id="totalFabric">0</span> meters</strong>
+        </p>
+
+      </div>
+
+      <p class="note">
+        Note: This calculator provides an estimate. Actual fabric
+        requirements may vary depending on garment design, fabric width,
+        pattern placement, cutting efficiency, shrinkage, and production
+        wastage.
+      </p>
+
+      <a href="index.html" class="back">
+        ← Back to Fashionpreneur Lab
+      </a>
+
+    </div>
+
+  </div>
+
+  <script>
+    function calculateFabric() {
+
+      const fabricPerGarment =
+        parseFloat(document.getElementById("fabricPerGarment").value);
+
+      const quantity =
+        parseFloat(document.getElementById("quantity").value);
+
+      const wastage =
+        parseFloat(document.getElementById("wastage").value);
+
+      if (
+        isNaN(fabricPerGarment) ||
+        isNaN(quantity) ||
+        isNaN(wastage) ||
+        fabricPerGarment <= 0 ||
+        quantity <= 0 ||
+        wastage < 0
+      ) {
+        alert("Please enter valid values in all fields.");
+        return;
+      }
+
+      const beforeWastage = fabricPerGarment * quantity;
+
+      const wastageAmount =
+        beforeWastage * (wastage / 100);
+
+      const totalFabric =
+        beforeWastage + wastageAmount;
+
+      document.getElementById("beforeWastage").textContent =
+        beforeWastage.toFixed(2);
+
+      document.getElementById("wastageAmount").textContent =
+        wastageAmount.toFixed(2);
+
+      document.getElementById("totalFabric").textContent =
+        totalFabric.toFixed(2);
+
+      document.getElementById("result").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
