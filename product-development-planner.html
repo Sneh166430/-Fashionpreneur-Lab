@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Development Planner | Fashionpreneur Lab</title>
+  <meta name="description" content="Plan and track the development of an apparel product from idea to launch.">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f5f5f5;
+      color: #222;
+    }
+    header {
+      background: #222;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0 0 10px;
+      font-size: 28px;
+    }
+    header p {
+      margin: 0;
+      color: #ddd;
+    }
+    .container {
+      max-width: 750px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+    .planner {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+    .progress-section {
+      margin-bottom: 25px;
+    }
+    .progress-text {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    .progress-bar {
+      width: 100%;
+      height: 14px;
+      background: #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: #222;
+      transition: width 0.3s ease;
+    }
+    .stage {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 12px;
+    }
+    .stage label {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      cursor: pointer;
+      font-weight: bold;
+      line-height: 1.4;
+    }
+    .stage input {
+      width: 20px;
+      height: 20px;
+      margin-top: 1px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+    .stage p {
+      margin: 8px 0 0 32px;
+      color: #666;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .notes-title {
+      margin-top: 25px;
+      margin-bottom: 8px;
+    }
+    textarea {
+      width: 100%;
+      min-height: 130px;
+      padding: 12px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-family: Arial, sans-serif;
+      font-size: 15px;
+      resize: vertical;
+    }
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 13px;
+      background: #222;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #444;
+    }
+    .back {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #222;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Product Development Planner</h1>
+    <p>Plan and track your apparel product from idea to launch.</p>
+  </header>
+  <div class="container">
+    <div class="planner">
+      <div class="progress-section">
+        <div class="progress-text" id="progressText">
+          0 / 9 stages completed
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+      </div>
+      <div class="stage">
+        <label>
+          <input type="checkbox" class="stageCheck">
+          <span>💡 1. Product Idea</span>
+        </label>
+        <p>Define the product concept, purpose, key features and design direction.</p>
+      </div>
+      <div class="stage">
+        <label>
+          <input type="checkbox" class="stageCheck">
+          <span>🎯 2. Target Customer</span>
+        </label>
+        <p>Identify your target customer, their needs, preferences and expected price range.</p>
+      </div>
+      <div class="stage">
+        <label>
+          <input type="checkbox" class="stageCheck">
+          <span>🧵 3. Fabric & Materials</span>
+        </label>
+        <p>Select suitable fabrics, trims, labels, packaging and other materials.</p>
+      </div>
+      <div class="stage">
+        <label>
+          <input type="checkbox" class="stageCheck">
+          <span>✏️ 4. Design Development</span>
+        </label>
+        <p>Prepare sketches, color options, garment details and design specifications.</p>
+      </div>
+      <div class="stage">
+        <label>
+          <input type="checkbox" class="stageCheck">
+          <span>📐 5. Measurements & Tech Pack</span>
+        </label>
+        <p>Prepare measurements, size specifications, construction details and tech-pack information.</p>
+      </div>
+      <div class="stage">
+        <label>
+          <input type="checkbox" class="stageCheck">
+          <span>🧪 6. Sample Development</span>
+        </label>
+        <p>Create the first sample and review fit, construction, fabric and overall appearance.</p>
+      </div>
+      <div class="stage">
+        <label>
+          <input type="checkbox" class="stageCheck">
+          <span>🔍 7. Quality Check</span>
+        </label>
+        <p>Check measurements, stitching, finishing, fabric quality and product consistency.</p>
+      </div>
+      <div class="stage">
+        <label>
+          <input type="checkbox" class="stageCheck">
+          <span>📦 8. Production</span>
+        </label>
+        <p>Finalize quantities, supplier details, production schedule and packaging requirements.</p>
+      </div>
+      <div class="stage">
+        <label>
+          <input type="checkbox" class="stageCheck">
+          <span>🚀 9. Launch</span>
+        </label>
+        <p>Prepare product photos, pricing, product descriptions, marketing and sales channels.</p>
+      </div>
+      <h3 class="notes-title">📝 Development Notes</h3>
+      <textarea id="notes" placeholder="Write your product development notes here..."></textarea>
+      <button type="button" onclick="resetPlanner()">
+        Reset Planner
+      </button>
+      <a href="index.html" class="back">
+        ← Back to Fashionpreneur Lab
+      </a>
+    </div>
+  </div>
+  <script>
+    const checkboxes = document.querySelectorAll(".stageCheck");
+    const progressText = document.getElementById("progressText");
+    const progressFill = document.getElementById("progressFill");
+    function updateProgress() {
+      const completed = document.querySelectorAll(".stageCheck:checked").length;
+      const total = checkboxes.length;
+      const percentage = (completed / total) * 100;
+      progressText.textContent =
+        completed + " / " + total + " stages completed";
+      progressFill.style.width = percentage + "%";
+    }
+    checkboxes.forEach(function(checkbox) {
+      checkbox.addEventListener("change", updateProgress);
+    });
+    function resetPlanner() {
+      checkboxes.forEach(function(checkbox) {
+        checkbox.checked = false;
+      });
+      document.getElementById("notes").value = "";
+      updateProgress();
+    }
+  </script>
+</body>
+</html>
