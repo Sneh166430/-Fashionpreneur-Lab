@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Apparel Supplier Checklist | Fashionpreneur Lab</title>
+
+  <meta name="description" content="A practical checklist for evaluating apparel and clothing suppliers.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f6f3;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 45px 20px;
+    }
+
+    header h1 {
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      max-width: 650px;
+      margin: auto;
+      color: #e5e5e5;
+    }
+
+    .container {
+      max-width: 750px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .tool-box {
+      background: white;
+      padding: 30px;
+      border-radius: 14px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .tool-box h2 {
+      margin-bottom: 8px;
+    }
+
+    .intro {
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .check-item:last-child {
+      border-bottom: none;
+    }
+
+    .check-item input {
+      width: 20px;
+      height: 20px;
+      margin-top: 3px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .check-item label {
+      cursor: pointer;
+    }
+
+    .category {
+      margin-top: 25px;
+      margin-bottom: 5px;
+      font-size: 19px;
+    }
+
+    .progress-box {
+      margin-top: 25px;
+      padding: 18px;
+      background: #f1efeb;
+      border-radius: 10px;
+    }
+
+    .progress-text {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 12px;
+      background: #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: #222;
+      transition: width 0.3s ease;
+    }
+
+    .reset-button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 12px;
+      border: none;
+      border-radius: 7px;
+      background: #222;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .reset-button:hover {
+      background: #444;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 25px;
+      text-decoration: none;
+      color: #222;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #777;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>🏭 Apparel Supplier Checklist</h1>
+    <p>
+      Review important factors before selecting an apparel or clothing supplier.
+    </p>
+  </header>
+
+  <main class="container">
+
+    <section class="tool-box">
+
+      <h2>Supplier Evaluation Checklist</h2>
+
+      <p class="intro">
+        Check each item as you evaluate a potential supplier.
+        Use this checklist before placing an order.
+      </p>
+
+      <h3 class="category">📋 Business & Communication</h3>
+
+      <div class="check-item">
+        <input type="checkbox" id="item1">
+        <label for="item1">Supplier has clear business contact information.</label>
+      </div>
+
+      <div class="check-item">
+        <input type="checkbox" id="item2">
+        <label for="item2">Supplier responds clearly and professionally.</label>
+      </div>
+
+      <div class="check-item">
+        <input type="checkbox" id="item3">
+        <label for="item3">Minimum order quantity (MOQ) is suitable for the business.</label>
+      </div>
+
+      <h3 class="category">🧵 Product & Quality</h3>
+
+      <div class="check-item">
+        <input type="checkbox" id="item4">
+        <label for="item4">Fabric and material specifications are clearly provided.</label>
+      </div>
+
+      <div class="check-item">
+        <input type="checkbox" id="item5">
+        <label for="item5">Samples can be requested before bulk production.</label>
+      </div>
+
+      <div class="check-item">
+        <input type="checkbox" id="item6">
+        <label for="item6">Size, measurements and product specifications can be confirmed.</label>
+      </div>
+
+      <div class="check-item">
+        <input type="checkbox" id="item7">
+        <label for="item7">Quality control process is explained by the supplier.</label>
+      </div>
+
+      <h3 class="category">💰 Cost & Production</h3>
+
+      <div class="check-item">
+        <input type="checkbox" id="item8">
+        <label for="item8">Product pricing is clearly quoted.</label>
+      </div>
+
+      <div class="check-item">
+        <input type="checkbox" id="item9">
+        <label for="item9">Payment terms are clearly understood.</label>
+      </div>
+
+      <div class="check-item">
+        <input type="checkbox" id="item10">
+        <label for="item10">Production lead time is confirmed.</label>
+      </div>
+
+      <h3 class="category">🚚 Shipping & Logistics</h3>
+
+      <div class="check-item">
+        <input type="checkbox" id="item11">
+        <label for="item11">Shipping options and estimated delivery time are available.</label>
+      </div>
+
+      <div class="check-item">
+        <input type="checkbox" id="item12">
+        <label for="item12">Packaging requirements can be discussed.</label>
+      </div>
+
+      <div class="check-item">
+        <input type="checkbox" id="item13">
+        <label for="item13">Returns, defects or replacement policies are understood.</label>
+      </div>
+
+      <div class="progress-box">
+
+        <div class="progress-text">
+          Checklist Progress: <span id="progressText">0 / 13 completed</span>
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+      </div>
+
+      <button class="reset-button" onclick="resetChecklist()">
+        Reset Checklist
+      </button>
+
+      <a href="index.html" class="back">
+        ← Back to Fashionpreneur Lab
+      </a>
+
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 Fashionpreneur Lab · Created by Sneha Yadav
+  </footer>
+
+  <script>
+    const checkboxes = document.querySelectorAll(
+      '.check-item input[type="checkbox"]'
+    );
+
+    function updateProgress() {
+
+      let completed = 0;
+
+      checkboxes.forEach(function(checkbox) {
+        if (checkbox.checked) {
+          completed++;
+        }
+      });
+
+      const total = checkboxes.length;
+      const percentage = (completed / total) * 100;
+
+      document.getElementById("progressText").textContent =
+        completed + " / " + total + " completed";
+
+      document.getElementById("progressFill").style.width =
+        percentage + "%";
+    }
+
+    checkboxes.forEach(function(checkbox) {
+      checkbox.addEventListener("change", updateProgress);
+    });
+
+    function resetChecklist() {
+
+      checkboxes.forEach(function(checkbox) {
+        checkbox.checked = false;
+      });
+
+      updateProgress();
+    }
+  </script>
+
+</body>
+</html>
