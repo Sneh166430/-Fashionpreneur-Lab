@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Small-Batch Production Planner | Fashionpreneur Lab</title>
+
+  <meta name="description" content="Plan quantities and basic production requirements for small-batch fashion production.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8f6f3;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 45px 20px;
+    }
+
+    header h1 {
+      font-size: 34px;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      color: #e5e5e5;
+      max-width: 650px;
+      margin: auto;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .tool-box {
+      background: white;
+      padding: 30px;
+      border-radius: 14px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .tool-box h2 {
+      margin-bottom: 10px;
+    }
+
+    .tool-box > p {
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-top: 18px;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 7px;
+      font-size: 16px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 25px;
+      padding: 13px;
+      border: none;
+      border-radius: 7px;
+      background: #222;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #444;
+    }
+
+    .result {
+      display: none;
+      margin-top: 25px;
+      padding: 20px;
+      background: #f1efeb;
+      border-radius: 10px;
+    }
+
+    .result h3 {
+      margin-bottom: 12px;
+    }
+
+    .result p {
+      margin: 7px 0;
+    }
+
+    .back {
+      display: inline-block;
+      margin-top: 25px;
+      text-decoration: none;
+      color: #222;
+      font-weight: bold;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #777;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>📦 Small-Batch Production Planner</h1>
+    <p>
+      Plan your production quantity and estimate basic material requirements
+      for a small fashion or apparel batch.
+    </p>
+  </header>
+
+  <main class="container">
+
+    <section class="tool-box">
+
+      <h2>Production Planning Tool</h2>
+
+      <p>
+        Enter your planned quantity, fabric requirement per piece,
+        and estimated production cost per piece.
+      </p>
+
+      <label for="quantity">Production Quantity</label>
+      <input type="number" id="quantity" placeholder="Example: 50" min="1">
+
+      <label for="fabric">Fabric Required Per Piece (meters)</label>
+      <input type="number" id="fabric" placeholder="Example: 1.5" min="0" step="0.01">
+
+      <label for="cost">Estimated Production Cost Per Piece (₹)</label>
+      <input type="number" id="cost" placeholder="Example: 500" min="0" step="0.01">
+
+      <button onclick="calculatePlan()">Calculate Production Plan</button>
+
+      <div class="result" id="result">
+
+        <h3>Production Plan</h3>
+
+        <p>
+          <strong>Total Pieces:</strong>
+          <span id="totalPieces"></span>
+        </p>
+
+        <p>
+          <strong>Total Fabric Required:</strong>
+          <span id="totalFabric"></span> meters
+        </p>
+
+        <p>
+          <strong>Estimated Production Cost:</strong>
+          ₹<span id="totalCost"></span>
+        </p>
+
+      </div>
+
+      <a href="index.html" class="back">← Back to Fashionpreneur Lab</a>
+
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 Fashionpreneur Lab · Created by Sneha Yadav
+  </footer>
+
+  <script>
+    function calculatePlan() {
+
+      const quantity = parseFloat(document.getElementById("quantity").value);
+      const fabric = parseFloat(document.getElementById("fabric").value);
+      const cost = parseFloat(document.getElementById("cost").value);
+
+      if (
+        isNaN(quantity) ||
+        isNaN(fabric) ||
+        isNaN(cost) ||
+        quantity <= 0 ||
+        fabric < 0 ||
+        cost < 0
+      ) {
+        alert("Please enter valid values in all fields.");
+        return;
+      }
+
+      const totalFabric = quantity * fabric;
+      const totalCost = quantity * cost;
+
+      document.getElementById("totalPieces").textContent = quantity;
+      document.getElementById("totalFabric").textContent =
+        totalFabric.toFixed(2);
+
+      document.getElementById("totalCost").textContent =
+        totalCost.toFixed(2);
+
+      document.getElementById("result").style.display = "block";
+    }
+  </script>
+
+</body>
+</html>
