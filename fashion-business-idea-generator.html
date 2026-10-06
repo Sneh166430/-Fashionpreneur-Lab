@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fashion Business Idea Generator | Fashionpreneur Lab</title>
+  <meta name="description" content="Generate practical fashion business ideas based on product category, target customer and business model.">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f5f5f5;
+      color: #222;
+    }
+    header {
+      background: #222;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0 0 10px;
+      font-size: 28px;
+    }
+    header p {
+      margin: 0;
+      color: #ddd;
+    }
+    .container {
+      max-width: 700px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+    .generator {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 7px;
+      font-weight: bold;
+    }
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 16px;
+      background: white;
+    }
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 13px;
+      background: #222;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #444;
+    }
+    .result {
+      display: none;
+      margin-top: 25px;
+      padding: 22px;
+      background: #f0f0f0;
+      border-radius: 8px;
+    }
+    .result h2 {
+      margin-top: 0;
+    }
+    .result p {
+      line-height: 1.6;
+      margin: 10px 0;
+    }
+    .idea-box {
+      margin-top: 15px;
+      padding: 15px;
+      background: white;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+    }
+    .back {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #222;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Fashion Business Idea Generator</h1>
+    <p>Generate practical business ideas for fashion entrepreneurs.</p>
+  </header>
+  <div class="container">
+    <div class="generator">
+      <label for="category">
+        👕 Product Category
+      </label>
+      <select id="category">
+        <option value="apparel">Apparel & Clothing</option>
+        <option value="activewear">Activewear & Fitness</option>
+        <option value="sustainable">Sustainable Fashion</option>
+        <option value="accessories">Fashion Accessories</option>
+        <option value="custom">Custom & Personalized Fashion</option>
+      </select>
+      <label for="customer">
+        🎯 Target Customer
+      </label>
+      <select id="customer">
+        <option value="students">Students & Young Adults</option>
+        <option value="professionals">Working Professionals</option>
+        <option value="fitness">Fitness & Sports Consumers</option>
+        <option value="eco">Eco-Conscious Consumers</option>
+        <option value="creators">Creators & Small Businesses</option>
+      </select>
+      <label for="model">
+        💼 Business Model
+      </label>
+      <select id="model">
+        <option value="online">Online Direct-to-Consumer</option>
+        <option value="custom">Custom / Made-to-Order</option>
+        <option value="smallbatch">Small-Batch Production</option>
+        <option value="marketplace">Marketplace-Based Business</option>
+        <option value="b2b">B2B / Business Supply</option>
+      </select>
+      <button type="button" onclick="generateIdea()">
+        Generate Business Idea
+      </button>
+      <div class="result" id="result">
+        <h2>💡 Your Fashion Business Idea</h2>
+        <div class="idea-box">
+          <p><strong>Business Concept:</strong></p>
+          <p id="idea"></p>
+        </div>
+        <div class="idea-box">
+          <p><strong>Target Customer:</strong></p>
+          <p id="target"></p>
+        </div>
+        <div class="idea-box">
+          <p><strong>Business Model:</strong></p>
+          <p id="businessModel"></p>
+        </div>
+        <div class="idea-box">
+          <p><strong>First Step:</strong></p>
+          <p id="firstStep"></p>
+        </div>
+      </div>
+      <a href="index.html" class="back">
+        ← Back to Fashionpreneur Lab
+      </a>
+    </div>
+  </div>
+  <script>
+    const ideas = {
+      apparel: {
+        students: "Create an affordable everyday clothing brand focused on comfortable, versatile pieces for students and young adults.",
+        professionals: "Build a smart-casual apparel brand offering practical office-to-evening clothing for working professionals.",
+        fitness: "Create performance-inspired everyday apparel that combines comfort, movement and modern streetwear design.",
+        eco: "Develop a clothing line using more sustainable materials and transparent product information.",
+        creators: "Offer small-batch apparel collections designed for creators, communities and niche online audiences."
+      },
+      activewear: {
+        students: "Create affordable gym and training basics designed for students who want functional activewear without premium pricing.",
+        professionals: "Build versatile activewear that can transition between workouts, commuting and everyday activities.",
+        fitness: "Develop specialized training apparel focused on comfort, mobility, fit and practical performance features.",
+        eco: "Create activewear using recycled or lower-impact materials with a focus on durability and longer product life.",
+        creators: "Launch limited-edition fitness apparel collections in collaboration with fitness creators and communities."
+      },
+      sustainable: {
+        students: "Create affordable sustainable fashion basics that make responsible clothing choices easier for younger consumers.",
+        professionals: "Build a minimalist sustainable workwear brand focused on durable, versatile pieces.",
+        fitness: "Develop sustainable fitness clothing designed for repeated use and long product life.",
+        eco: "Create a transparent sustainable-fashion brand that explains materials, production and care information for every product.",
+        creators: "Help creators launch small sustainable merchandise collections using made-to-order or small-batch production."
+      },
+      accessories: {
+        students: "Create affordable fashion accessories that allow students to personalize simple everyday outfits.",
+        professionals: "Develop functional accessories designed for professionals who want practical but stylish products.",
+        fitness: "Create gym and fitness accessories combining functionality with modern fashion aesthetics.",
+        eco: "Build an accessories brand using recycled, upcycled or lower-impact materials.",
+        creators: "Create customizable accessories that creators can use for limited-edition merchandise."
+      },
+      custom: {
+        students: "Offer personalized clothing and accessories where young customers can choose designs, graphics or details.",
+        professionals: "Create made-to-order personalized workwear and occasion pieces based on customer preferences.",
+        fitness: "Offer personalized training apparel for individuals, teams and fitness communities.",
+        eco: "Create customized products from existing or surplus materials to reduce unnecessary production.",
+        creators: "Provide customized small-batch merchandise production for creators and online communities."
+      }
+    };
+    const customerNames = {
+      students: "Students & Young Adults",
+      professionals: "Working Professionals",
+      fitness: "Fitness & Sports Consumers",
+      eco: "Eco-Conscious Consumers",
+      creators: "Creators & Small Businesses"
+    };
+    const modelNames = {
+      online: "Online Direct-to-Consumer",
+      custom: "Custom / Made-to-Order",
+      smallbatch: "Small-Batch Production",
+      marketplace: "Marketplace-Based Business",
+      b2b: "B2B / Business Supply"
+    };
+    const firstSteps = {
+      online: "Choose one focused product, study competing brands, calculate your costs and test demand with a small online launch.",
+      custom: "Create 2–3 sample designs, define customization options and test the service with a small group of customers.",
+      smallbatch: "Select one product, identify a suitable supplier, calculate minimum quantities and develop a first sample.",
+      marketplace: "Choose a niche product, compare marketplace fees, prepare product listings and test a small number of units.",
+      b2b: "Identify a specific business customer, understand their requirements and prepare a small product or supplier proposal."
+    };
+    function generateIdea() {
+      const category = document.getElementById("category").value;
+      const customer = document.getElementById("customer").value;
+      const model = document.getElementById("model").value;
+      document.getElementById("idea").textContent =
+        ideas[category][customer];
+      document.getElementById("target").textContent =
+        customerNames[customer];
+      document.getElementById("businessModel").textContent =
+        modelNames[model];
+      document.getElementById("firstStep").textContent =
+        firstSteps[model];
+      document.getElementById("result").style.display = "block";
+    }
+  </script>
+</body>
+</html>
