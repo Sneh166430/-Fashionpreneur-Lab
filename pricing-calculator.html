@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic Pricing Calculator | Fashionpreneur Lab</title>
+  <meta name="description" content="Calculate estimated selling price and profit for apparel products.">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f5f5f5;
+      color: #222;
+    }
+    header {
+      background: #222;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0 0 10px;
+      font-size: 28px;
+    }
+    header p {
+      margin: 0;
+      color: #ddd;
+    }
+    .container {
+      max-width: 650px;
+      margin: 30px auto;
+      padding: 20px;
+    }
+    .calculator {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 13px;
+      background: #222;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #444;
+    }
+    .result {
+      margin-top: 25px;
+      padding: 20px;
+      background: #f0f0f0;
+      border-radius: 8px;
+      display: none;
+    }
+    .result h2 {
+      margin-top: 0;
+    }
+    .result p {
+      font-size: 18px;
+      margin: 10px 0;
+    }
+    .note {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #666;
+      line-height: 1.5;
+    }
+    .back {
+      display: inline-block;
+      margin-top: 20px;
+      text-decoration: none;
+      color: #222;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Basic Pricing Calculator</h1>
+    <p>Estimate a selling price based on product cost and desired profit.</p>
+  </header>
+  <div class="container">
+    <div class="calculator">
+      <label for="productCost">
+        Product Cost (₹)
+      </label>
+      <input
+        type="number"
+        id="productCost"
+        placeholder="Example: 500"
+        step="0.01"
+        min="0"
+      >
+      <label for="profitMargin">
+        Desired Profit Margin (%)
+      </label>
+      <input
+        type="number"
+        id="profitMargin"
+        placeholder="Example: 30"
+        step="0.1"
+        min="0"
+        max="99.99"
+      >
+      <button type="button" onclick="calculatePrice()">
+        Calculate Selling Price
+      </button>
+      <div class="result" id="result">
+        <h2>Pricing Estimate</h2>
+        <p>
+          Product Cost:
+          <strong>₹<span id="displayCost">0.00</span></strong>
+        </p>
+        <p>
+          Estimated Profit:
+          <strong>₹<span id="profitAmount">0.00</span></strong>
+        </p>
+        <p>
+          Suggested Selling Price:
+          <strong>₹<span id="sellingPrice">0.00</span></strong>
+        </p>
+      </div>
+      <p class="note">
+        Note: This calculator uses profit margin, meaning the desired
+        profit is calculated as a percentage of the final selling price.
+        Actual pricing should also consider discounts, taxes, shipping,
+        marketplace fees, marketing costs, and customer demand.
+      </p>
+      <a href="index.html" class="back">
+        ← Back to Fashionpreneur Lab
+      </a>
+    </div>
+  </div>
+  <script>
+    function calculatePrice() {
+      const productCostInput = document.getElementById("productCost");
+      const profitMarginInput = document.getElementById("profitMargin");
+      const productCost = parseFloat(productCostInput.value);
+      const profitMargin = parseFloat(profitMarginInput.value);
+      if (
+        isNaN(productCost) ||
+        isNaN(profitMargin) ||
+        productCost <= 0 ||
+        profitMargin < 0 ||
+        profitMargin >= 100
+      ) {
+        alert("Please enter valid values. Profit margin must be below 100%.");
+        return;
+      }
+      const sellingPrice =
+        productCost / (1 - profitMargin / 100);
+      const profitAmount =
+        sellingPrice - productCost;
+      document.getElementById("displayCost").textContent =
+        productCost.toFixed(2);
+      document.getElementById("profitAmount").textContent =
+        profitAmount.toFixed(2);
+      document.getElementById("sellingPrice").textContent =
+        sellingPrice.toFixed(2);
+      document.getElementById("result").style.display = "block";
+    }
+  </script>
+</body>
+</html>
